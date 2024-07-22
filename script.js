@@ -4,7 +4,7 @@ let allPokemons = [];
 
 
 function init(params) {
-    fetchPokemon(path = "pokemon?limit=50&offset=0")
+    fetchPokemon(path = "pokemon?limit=20&offset=0")
     fetchPokemonStats(path = "pokemon/")
 }
 
@@ -62,12 +62,14 @@ function renderPokemonCard() {
 }
 
 
-function getAllPokemonHTML(i, firstType) {
-    return` 
-    <div class="oneSmallPokemonCard">  
-       <span class="end"> #${allPokemons[i].id}</span> 
-        <h2>${allPokemons[i].name} </h2>
-        <img class="pokemonImage" src="${allPokemons[i].image}">
-    </div>`
+function openBogPokemonCard() {
+    console.log('open big ding hat funktioniert');
+        let overlayRef=document.getElementById('overlayBigPokemon')
+        overlayRef.classList.toggle('dNone');
+    
+        overlayRef.innerHTML=`
+            <div class="overlay"> 
+            <h1> Test bestanden </h1>
+            </div> 
+        `;
 }
-

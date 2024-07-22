@@ -1,32 +1,45 @@
-body{
+body {
     background-color: beige;
 }
 
-.allPokemonCardSmall{
+.allPokemonCardSmall {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.oneSmallPokemonCard{
+.oneSmallPokemonCard {
     width: 280px;
     height: 200px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     flex-wrap: wrap;
     border: green 1px solid;
     margin: 20px;
-    padding:15px;
+    padding: 15px;
     border-radius: 4%;
 }
 
-.pokemonImage{
+.pokemonImage {
     width: 160px;
     height: 160px;
     object-fit: cover;
 }
 
-h2{
-    margin:0;
+h2 {
+    margin: 0;
+}
+
+.dNone {
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.215);
 }
