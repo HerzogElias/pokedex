@@ -62,14 +62,9 @@ function renderPokemonCard() {
 }
 
 
-function openBogPokemonCard() {
+function openBogPokemonCard(i,firstType,weightInKg) {
     console.log('open big ding hat funktioniert');
-        let overlayRef=document.getElementById('overlayBigPokemon')
-        overlayRef.classList.toggle('dNone');
-    
-        overlayRef.innerHTML=`
-            <div class="overlay"> 
-            <h1> Test bestanden </h1>
-            </div> 
-        `;
+    let overlayRef = document.getElementById('overlayBigPokemon')
+    overlayRef.classList.toggle('dNone');
+    overlayRef.innerHTML += getBigPokemonCardHTML(i, firstType,weightInKg);
 }
