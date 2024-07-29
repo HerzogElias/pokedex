@@ -77,6 +77,7 @@ function openBigPokemonGeneral(i) {
 function openBigPkemonspeizifies(i) {
     console.log('Spezifies anzeigen funktioniert');
     let pokemonStats = document.getElementById('pokemonBigStats');
+    //*Folgende Variablen gelten nur zur Information*//
     let hp = allPokemons[i].stats[0];
     let attack = allPokemons[i].stats[1];
     let defense = allPokemons[i].stats[2];
@@ -85,5 +86,5 @@ function openBigPkemonspeizifies(i) {
     let speed = allPokemons[i].stats[5];
 
     pokemonStats.innerHTML = '';
-    pokemonStats.innerHTML += getPokemonStatsHTML(hp, attack, defense, spezial_attack, spezial_defense, speed, i);
+    pokemonStats.innerHTML += getPokemonStatsHTML(i);
 }

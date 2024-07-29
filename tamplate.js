@@ -1,6 +1,6 @@
 function getAllPokemonHTML(i,firstType,weightInKg) {
     return ` 
-    <div onclick="openBigPokemonCard(${i}), ${firstTypes},${weightInKg}" class="oneSmallPokemonCard b_${firstType}">  
+    <div onclick="openBigPokemonCard(${i}), ${firstType},${weightInKg}" class="oneSmallPokemonCard">  
        <span class="end"> #${allPokemons[i].id}</span> 
         <h2>${allPokemons[i].name} </h2>
         <img class="pokemonImage" src="${allPokemons[i].image}">
@@ -89,7 +89,7 @@ function getBigPokemonCardHTML(i, weightInKg,hp, attack, defense, spezial_attack
     </div>
     <div class="bigPokemonCardMiddle">  
     <button onclick="openBigPokemonGeneral(${i}, ${weightInKg})" class="bigPokemonButton"> General </button>
-    <button onclick="openBigPokemonSpeizifies(${hp}, ${attack}, ${defense}, ${spezial_attack},${spezial_defense}, ${speed}, ${i})" class="bigPokemonButton" id="pokemonBigStats"> Specifices </button> 
+    <button onclick="openBigPokemonSpeizifies(${i})" class="bigPokemonButton" id="pokemonBigStats"> Specifices </button> 
     </div>
     <div id="bigPokemonGeneral">  </div>
     <div id="bigPokemonStats" </div>`;
@@ -98,6 +98,7 @@ function getBigPokemonCardHTML(i, weightInKg,hp, attack, defense, spezial_attack
 function openBigPokemonGeneral(i, weightInKg){
 console.log('open big general funktioniert');
 let bigPokemonGeneral= document.getElementById('bigPokemonGeneral');
+bigPokemonGeneral.innerHTML="";
 bigPokemonGeneral.innerHTML=`   
     <div class="bigPokemonGenerals"> 
     <table>
@@ -114,35 +115,36 @@ bigPokemonGeneral.innerHTML=`
 `;
 }
 
-function openBigPokemonSpeizifies(hp,attack,defense,spezial_attack,spezial_defense,speed,i){
+function openBigPokemonSpeizifies(i){
 console.log('States funkiton funktioniert');
 let bigPokemonStats= document.getElementById('bigPokemonStats');
-bigPokemonStats.innerHTML +=`
+bigPokemonStats.innerHTML="";
+bigPokemonStats.innerHTML =`
  <div class="bigPokemonGenerals"> 
     <table>
         <tr>
             <td>HP</td>
-            <td>${hp}</td>
+            <td>${allPokemons[i].stats[0]}</td>
         </tr>
         <tr>
             <td>Attack</td>
-            <td>${attack} </td>
+            <td>${allPokemons[i].stats[1]} </td>
         </tr>
           <tr>
             <td>Defense</td>
-            <td>${defense}</td>
+            <td>${allPokemons[i].stats[2]}</td>
         </tr>
           <tr>
             <td>Spezial Attack </td>
-            <td>${spezial_attack}</td>
+            <td>${allPokemons[i].stats[3]}</td>
         </tr>
           <tr>
             <td>Spezial Defense</td>
-            <td>${spezial_defense}</td>
+            <td>${allPokemons[i].stats[4]}</td>
         </tr>
            <tr>
             <td>Speed</td>
-            <td>${speed}</td>
+            <td>${allPokemons[i].stats[5]}</td>
         </tr>
     </table>
     </div> 
