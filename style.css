@@ -2,6 +2,38 @@ body {
     background-color: beige;
 }
 
+.loader {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    animation : rotate 2s linear infinite;
+  }
+  .loader:before,
+  .loader:after {
+    content:"";
+    flex:1;
+    background:#fff;
+    animation: mvx 0.5s infinite linear alternate;
+  }
+  .loader:before {
+    background: #FF3D00;
+    animation-name:mvrx;
+  }
+
+  @keyframes rotate {
+    100% {transform: rotate(360deg)}
+  }
+  @keyframes mvx {
+    0% , 40% {transform: translateX(0px)}
+    20% , 60% {transform: translateX(8px)}
+    100% {transform: translateX(15px)}
+  }
+  @keyframes mvrx {
+    0% , 40% {transform: translateX(0px)}
+    20% , 60% {transform: translateX(-8px)}
+    100% {transform: translateX(-15px)}
+  }
+
 .allPokemonCardSmall {
     display: flex;
     align-items: center;
@@ -42,6 +74,7 @@ h2 {
     height: 100vh;
     width: 100%;
     background-color: rgba(79, 64, 64, 0.897);
+    overflow: hidden;
 }
 
 .bigPokemonCard{
@@ -71,7 +104,7 @@ h2 {
     width: 300px;
     height: 50px;
     display: flex;
-    justify-content: center;
+    justify-content:space-between;
     align-items: center;
 }
 .bigPokemonButton{
@@ -81,4 +114,17 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.loadMorePokemon{
+    width: 200px;
+    height: 35px;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+table{
+    color:aliceblue;
 }

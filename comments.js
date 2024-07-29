@@ -25,3 +25,9 @@ function init(params) {
     fetchPokemon(path = "pokemon?limit=20&offset=0")
     fetchPokemonStats(path = `pokemon/?limit=10&offset=${OFFSET}`)
 }*/
+
+/*
+function loadMorePokemons(){
+    console.log('loading more Pokemons funktioniert ');
+}*/
+
