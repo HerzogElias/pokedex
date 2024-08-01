@@ -80,7 +80,7 @@ function getPokemonStatsHTML(hp, attack, defense, spezial_attack, spezial_defens
     </div>`;
 }*/
 
-function getBigPokemonCardHTML(i, weightInKg,hp, attack, defense, spezial_attack, spezial_defense, speed){
+function getBigPokemonCardHTML(i, weightInKg){
     return`
     <div class="bigPokemonCard"> 
     <div class ="bigPokemonCardTop"> 
@@ -97,8 +97,12 @@ function getBigPokemonCardHTML(i, weightInKg,hp, attack, defense, spezial_attack
 
 function openBigPokemonGeneral(i, weightInKg){
 console.log('open big general funktioniert');
-let bigPokemonGeneral= document.getElementById('bigPokemonGeneral');
-bigPokemonGeneral.innerHTML="";
+let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
+let bigPokemonStats = document.getElementById('bigPokemonStats');
+
+// Clear the other div's content
+bigPokemonStats.innerHTML = "";
+
 bigPokemonGeneral.innerHTML=`   
     <div class="bigPokemonGenerals"> 
     <table>
@@ -112,13 +116,24 @@ bigPokemonGeneral.innerHTML=`
         </tr>
     </table>
     </div> 
+
+    <div class="bigPokemonBottom">
+    <img onclick="lessBigPokemon(${i} ${weightInKg})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
+    <img onclick="closeBigPokemon()"  class="bigPokemonWayPicutre" src="img/deleate.png">
+    <img onclick="nextBigPokemon()" class="bigPokemonWayPicutre" src="img/hin.png"> 
+    </div> 
 `;
 }
 
 function openBigPokemonSpeizifies(i){
 console.log('States funkiton funktioniert');
 let bigPokemonStats= document.getElementById('bigPokemonStats');
-bigPokemonStats.innerHTML="";
+
+let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
+
+// Clear the other div's content
+bigPokemonGeneral.innerHTML = "";
+
 bigPokemonStats.innerHTML =`
  <div class="bigPokemonGenerals"> 
     <table>
@@ -150,3 +165,26 @@ bigPokemonStats.innerHTML =`
     </div> 
 `;
 }
+
+function lessBigPokemon(i) {
+    console.log('less big Pokemon funktioniert');
+    if (i > 0) {
+        i--;
+    } else {
+        i = allPokemons.length - 1; // Zum letzten Pokémon wechseln
+    }
+    getBigPokemonCardHTML(i);
+    openBigPokemonGeneral(i);
+}
+
+function closeBigPokemon(){
+    console.log('close big Pokemon hat funktioniert');
+    let overlayRef = document.getElementById('overlayBigPokemon')
+    overlayRef.classList.toggle('dNone');
+}
+
+function nextBigPokemon(i,weightInKg){
+    console.log('next big pokemon geht!');
+
+}
+
