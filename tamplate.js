@@ -7,79 +7,6 @@ function getAllPokemonHTML(i,firstType,weightInKg) {
     </div>`
 }
 
-
-/*function getBigPokemonCardHTML(i, weightInKg) {
-    return`
-    <div class="bigPokemonCard"> 
-    <div class ="bigPokemonCardTop"> 
-      <h2>${allPokemons[i].name} </h2>
-    <img class="pokemonImage" src="${allPokemons[i].image}">
-    </div>
-    <div class="bigPokemonCardMiddle">  
-    <button onclick="openBigPokemonGeneral()" class="bigPokemonButton" > General </button>
-    <button onclick="openBigPkemonspeizifies(${i})" class="bigPokemonButton" id="pokemonBigStats"> Specifices </button> 
-    </div>
-    <divclass="bigPokemonGenerals"> 
-    <table>
-        <tr>
-            <td>Weight</td>
-            <td>${weightInKg}kg</td>
-        </tr>
-        <tr>
-            <td>Height</td>
-            <td>${((allPokemons[i].height) / 10)}m</td>
-        </tr>
-    </table>
-    </div> 
-    <img class="bigPokemonWayPicutre" src="img/zurueck.png"
-    <img class="bigPokemonWayPicutre" src="img/hin.png">
-    </div>
-     `;}
-
-function getPokemonStatsHTML(hp, attack, defense, spezial_attack, spezial_defense, speed, i) {
-    return`
-       <div class="bigPokemonCard"> 
-    <div class ="bigPokemonCardTop"> 
-      <h2>${allPokemons[i].name} </h2>
-    <img class="pokemonImage" src="${allPokemons[i].image}">
-    </div>
-    <div class="bigPokemonCardMiddle">  
-    <button onclick="openBigPokemonGeneral()" class="bigPokemonButton"  id="pokemonBigGeneral"> General </button>
-    <button onclick="openBigPkemonspeizifies(${i})" class="bigPokemonButton" id="pokemonBigStats"> Specifices </button> 
-    </div>
-    <div class="bigPokemonGenerals"> 
-    <table>
-        <tr>
-            <td>HP</td>
-            <td>${hp}</td>
-        </tr>
-        <tr>
-            <td>Attack</td>
-            <td>${attack} </td>
-        </tr>
-          <tr>
-            <td>Defense</td>
-            <td>${defense}</td>
-        </tr>
-          <tr>
-            <td>Spezial Attack </td>
-            <td>${spezial_attack}</td>
-        </tr>
-          <tr>
-            <td>Spezial Defense</td>
-            <td>${spezial_defense}</td>
-        </tr>
-           <tr>
-            <td>Speed</td>
-            <td>${speed}</td>
-        </tr>
-    </table>
-    </div> 
-    <img class="bigPokemonWayPicutre" src="img/zurueck.png"
-    <img class="bigPokemonWayPicutre" src="img/hin.png">
-    </div>`;
-}*/
-
 function getBigPokemonCardHTML(i, weightInKg){
     return`
     <div class="bigPokemonCard"> 
@@ -97,6 +24,7 @@ function getBigPokemonCardHTML(i, weightInKg){
 
 function openBigPokemonGeneral(i, weightInKg){
 console.log('open big general funktioniert');
+currentIndex = i; // Den aktuellen Index speichern
 let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
 let bigPokemonStats = document.getElementById('bigPokemonStats');
 
@@ -118,7 +46,7 @@ bigPokemonGeneral.innerHTML=`
     </div> 
 
     <div class="bigPokemonBottom">
-    <img onclick="lessBigPokemon(${i} ${weightInKg})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
+    <img onclick="lessBigPokemon(${i}, ${weightInKg})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
     <img onclick="closeBigPokemon()"  class="bigPokemonWayPicutre" src="img/deleate.png">
     <img onclick="nextBigPokemon()" class="bigPokemonWayPicutre" src="img/hin.png"> 
     </div> 
@@ -163,28 +91,10 @@ bigPokemonStats.innerHTML =`
         </tr>
     </table>
     </div> 
+    <div class="bigPokemonBottom">
+    <img onclick="lessBigPokemon(${i})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
+    <img onclick="closeBigPokemon()"  class="bigPokemonWayPicutre" src="img/deleate.png">
+    <img onclick="nextBigPokemon()" class="bigPokemonWayPicutre" src="img/hin.png"> 
+    </div> 
 `;
 }
-
-function lessBigPokemon(i) {
-    console.log('less big Pokemon funktioniert');
-    if (i > 0) {
-        i--;
-    } else {
-        i = allPokemons.length - 1; // Zum letzten Pokémon wechseln
-    }
-    getBigPokemonCardHTML(i);
-    openBigPokemonGeneral(i);
-}
-
-function closeBigPokemon(){
-    console.log('close big Pokemon hat funktioniert');
-    let overlayRef = document.getElementById('overlayBigPokemon')
-    overlayRef.classList.toggle('dNone');
-}
-
-function nextBigPokemon(i,weightInKg){
-    console.log('next big pokemon geht!');
-
-}
-

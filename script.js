@@ -2,15 +2,15 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPokemons = [];
 let OFFSET = 0;
+let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 
 
-function init(params) {
-    fetchPokemon(path = "pokemon?limit=20&offset=0")
+function init() {
+    fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     fetchPokemonStats(path = "pokemon/")
 }
 
-
-async function fetchPokemon(path = "pokemon?limit=10&offset=${OFFSET}"){
+async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
     allPokemons = await Promise.all(responseToJson.results.map(async (result, index) => {
@@ -28,7 +28,6 @@ async function fetchPokemon(path = "pokemon?limit=10&offset=${OFFSET}"){
     renderPokemonCard();
     console.log(allPokemons);
 }
-
 
 async function fetchPokemonData(url) {
     let response = await fetch(url);
@@ -87,4 +86,43 @@ function openBigPkemonspeizifies(i) {
 
     pokemonStats.innerHTML = '';
     pokemonStats.innerHTML += getPokemonStatsHTML(i);
+}
+
+function closeBigPokemon(){
+    console.log('close big Pokemon hat funktioniert');
+    let overlayRef = document.getElementById('overlayBigPokemon')
+    overlayRef.classList.toggle('dNone');
+}
+
+function lessBigPokemon() {
+    console.log('less big Pokemon funktioniert');
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = allPokemons.length - 1; // Zum letzten Pokémon wechseln
+    }
+    renderBigPokemonCard(currentIndex);
+}
+
+function nextBigPokemon() {
+    console.log('next big pokemon geht!');
+    if (currentIndex < allPokemons.length - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; // Zum ersten Pokémon wechseln
+    }
+    renderBigPokemonCard(currentIndex);
+}
+
+function loadMorePokemons(){
+    console.log('loading more Pokemons funktioniert ');
+    OFFSET+=20;
+    init();
+}
+
+function renderBigPokemonCard(i) { 
+    let overlayRef = document.getElementById('overlayBigPokemon');
+    let weightInKg = pokemonWeight(i);
+    overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
+    openBigPokemonGeneral(i, weightInKg); // Aktualisiere den Inhalt direkt
 }
