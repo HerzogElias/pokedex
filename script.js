@@ -49,7 +49,7 @@ async function fetchPokemonStats(path = "pokemon/") {
 
 function renderPokemonCard() {
     let pokemonCard = document.getElementById('allPokemonCardSmall'); /Die klasse beinhaltet alle Pokemons/
-    pokemonCard.innerHTML = '';
+   
     for (let i = 0; i < allPokemons.length; i++) {
         let firstType = allPokemons[i].type[0];
         pokemonCard.innerHTML += getAllPokemonHTML(i, firstType);
@@ -114,15 +114,15 @@ function nextBigPokemon() {
     renderBigPokemonCard(currentIndex);
 }
 
-function loadMorePokemons(){
-    console.log('loading more Pokemons funktioniert ');
-    OFFSET+=20;
-    init();
-}
-
 function renderBigPokemonCard(i) { 
     let overlayRef = document.getElementById('overlayBigPokemon');
     let weightInKg = pokemonWeight(i);
     overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
     openBigPokemonGeneral(i, weightInKg); // Aktualisiere den Inhalt direkt
+}
+
+function loadMorePokemons(){
+    console.log('loading more Pokemons funktioniert ');
+    OFFSET+=20;
+    init();
 }
