@@ -52,14 +52,14 @@ function renderPokemonCard() {
     for (let i = 0; i < allPokemons.length; i++) {
         let firstType = allPokemons[i].type[0];
         let allTypes = allPokemons[i].type; 
-        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, weightInKg);      
+        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));      
 }
 }
 
 function openBigPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon')
     overlayRef.classList.toggle('dNone');
-    overlayRef.classList.add('nScrollbar');
+    document.body.classList.add('no-scroll');
     overlayRef.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
 }
 
@@ -91,6 +91,7 @@ function openBigPkemonspeizifies(i) {
 
 function closeBigPokemon(){
     console.log('close big Pokemon hat funktioniert');
+    document.body.classList.remove('no-scroll');
     let overlayRef = document.getElementById('overlayBigPokemon')
     overlayRef.classList.toggle('dNone');
 }
