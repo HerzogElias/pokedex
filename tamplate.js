@@ -26,8 +26,6 @@ console.log('open big general funktioniert');
 currentIndex = i; // Den aktuellen Index speichern
 let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
 let bigPokemonStats = document.getElementById('bigPokemonStats');
-
-// Clear the other div's content
 bigPokemonStats.innerHTML = "";
 
 bigPokemonGeneral.innerHTML=`   

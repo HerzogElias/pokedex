@@ -5,9 +5,11 @@ let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 
 
-function init(parms) {
-    fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
-    fetchPokemonStats(path = "pokemon/")
+async function init(parms) {
+    showLoadingspinner()
+    await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
+    await fetchPokemonStats(path = "pokemon/")
+    hideLoadingspinner();
 }
 
 async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
@@ -129,6 +131,32 @@ function loadMorePokemons(){
     init();
 }
 
+function showLoadingspinner() {
+    document.getElementById('loadingspinner').classList.remove('dNone');
+    document.getElementById('content').classList.add('dNone');
+    document.getElementById('header').classList.add('dNone');
+}
+
+function hideLoadingspinner() {
+    document.getElementById('loadingspinner').classList.add('dNone');
+    document.getElementById('content').classList.remove('dNone');
+    document.getElementById('header').classList.remove('dNone');
+}
+
+/*
+function showLoadingspinner(){
+    document.body.classList.add('dNone');
+    document.body.classList.add('nScrollbar');
+    document.body.classList.add('loadinsgpinner');
+}
+
+function hideLoadingspinner() {
+    document.body.classList.remove('dNone');
+    document.body.classList.remove('nScrollbar');
+    document.body.classList.remove('loadingspinner');
+}*/
+
+
 /*Code von JUNUS 
 function getAllPokemonHTML(i, firstType, allTypes) {
     let html = '<ul>';
@@ -147,3 +175,27 @@ function getAllPokemonHTML(i, firstType, allTypes) {
         
     </div>`
 }*/
+
+/*Weiterer Code von Junus 
+async function init(){
+    showLoadingSpinner();
+    await loadPokemon();
+    hideLoadingSpinner();
+}
+
+function hideLoadingSpinner(){
+  document.getElementById('spinner').display = 'none';
+}
+
+function showLoadingSpinner(){
+  document.getElementById('spinner').display = 'block';
+}*/
+
+/*Noch machen: 
+Loadingspinner 
+Types in die kleine rendern
+Type Backgroundcolor 
+Suchfunktion 
+Design der großen Karte 
+Überprüfung responsive
+*/
