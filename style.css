@@ -2,6 +2,10 @@ body {
     background-color: beige;
 }
 
+.nScrollbar{
+    overflow: hidden;
+}
+/*Loadingspinner*/
 .loader {
     width: 48px;
     height: 48px;
@@ -40,6 +44,7 @@ body {
     object-fit: cover;
     background-position: center;
 }
+
 .allPokemonCardSmall {
     display: flex;
     align-items: center;

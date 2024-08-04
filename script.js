@@ -5,7 +5,7 @@ let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 
 
-function init() {
+function init(parms) {
     fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     fetchPokemonStats(path = "pokemon/")
 }
@@ -49,16 +49,17 @@ async function fetchPokemonStats(path = "pokemon/") {
 
 function renderPokemonCard() {
     let pokemonCard = document.getElementById('allPokemonCardSmall'); /Die klasse beinhaltet alle Pokemons/
-   
     for (let i = 0; i < allPokemons.length; i++) {
         let firstType = allPokemons[i].type[0];
-        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType);
-    }
+        let allTypes = allPokemons[i].type; 
+        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, weightInKg);      
+}
 }
 
 function openBigPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon')
     overlayRef.classList.toggle('dNone');
+    overlayRef.classList.add('nScrollbar');
     overlayRef.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
 }
 
@@ -126,3 +127,22 @@ function loadMorePokemons(){
     OFFSET+=20;
     init();
 }
+
+/*Code von JUNUS 
+function getAllPokemonHTML(i, firstType, allTypes) {
+    let html = '<ul>';
+    for(let j=0; j < allTypes.length; j++){
+        type = allTypes[j];
+        html += `<li>${type}</li>`;
+    }
+    html += '</ul>';
+    
+    return ` 
+    <div onclick="openBogPokemonCard(${i})" class="oneSmallPokemonCard">  
+       <span class="end"> #${allPokemons[i].id}</span> 
+        <h2>${allPokemons[i].name} </h2>
+        ${html}
+        <img class="pokemonImage" src="${allPokemons[i].image}">
+        
+    </div>`
+}*/
