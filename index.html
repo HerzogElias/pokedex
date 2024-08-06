@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="colors.css">
     <script src="script.js"></script>
     <script src="tamplate.js"></script>
     <link rel="shortcut icon" href="img/pokemon.jpg" type="image/x-icon">
     <title>Pokedex</title>
 </head>
 <body onload="init()" class="nScrollbar">
+    <div class="loadingspinnerDiv" id="loadingspinnerDiv"> 
     <span id="loadingspinner" class="loader dNone"></span>
+    </div>
+    <input type="search" placeholder="Serach Pokemon" id="pokemonSearchInput"> 
+
     <div id="overlayBigPokemon" class="overlayBigPokemon dNone"></div>
     <header id="header"> 
         <h1> My own Pokedex</h1>

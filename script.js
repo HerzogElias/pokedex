@@ -3,16 +3,16 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPokemons = [];
 let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
+let currentPokemons = [];
 
-
-async function init(parms) {
+async function init() {
     showLoadingspinner()
     await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     await fetchPokemonStats(path = "pokemon/")
     hideLoadingspinner();
 }
 
-async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
+async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
     allPokemons = await Promise.all(responseToJson.results.map(async (result, index) => {
@@ -53,9 +53,9 @@ function renderPokemonCard() {
     let pokemonCard = document.getElementById('allPokemonCardSmall'); /Die klasse beinhaltet alle Pokemons/
     for (let i = 0; i < allPokemons.length; i++) {
         let firstType = allPokemons[i].type[0];
-        let allTypes = allPokemons[i].type; 
-        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));      
-}
+        let allTypes = allPokemons[i].type;
+        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));
+    }
 }
 
 function openBigPokemonCard(i) {
@@ -91,7 +91,7 @@ function openBigPkemonspeizifies(i) {
     pokemonStats.innerHTML += getPokemonStatsHTML(i);
 }
 
-function closeBigPokemon(){
+function closeBigPokemon() {
     console.log('close big Pokemon hat funktioniert');
     document.body.classList.remove('no-scroll');
     let overlayRef = document.getElementById('overlayBigPokemon')
@@ -118,16 +118,16 @@ function nextBigPokemon() {
     renderBigPokemonCard(currentIndex);
 }
 
-function renderBigPokemonCard(i) { 
+function renderBigPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon');
     let weightInKg = pokemonWeight(i);
     overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
     openBigPokemonGeneral(i, weightInKg); // Aktualisiere den Inhalt direkt
 }
 
-function loadMorePokemons(){
+function loadMorePokemons() {
     console.log('loading more Pokemons funktioniert ');
-    OFFSET+=20;
+    OFFSET += 20;
     init();
 }
 
@@ -141,21 +141,8 @@ function hideLoadingspinner() {
     document.getElementById('loadingspinner').classList.add('dNone');
     document.getElementById('content').classList.remove('dNone');
     document.getElementById('header').classList.remove('dNone');
+    document.getElementById('loadingspinnerDiv').classList.remove('loadingspinnerDiv');
 }
-
-/*
-function showLoadingspinner(){
-    document.body.classList.add('dNone');
-    document.body.classList.add('nScrollbar');
-    document.body.classList.add('loadinsgpinner');
-}
-
-function hideLoadingspinner() {
-    document.body.classList.remove('dNone');
-    document.body.classList.remove('nScrollbar');
-    document.body.classList.remove('loadingspinner');
-}*/
-
 
 /*Code von JUNUS 
 function getAllPokemonHTML(i, firstType, allTypes) {
@@ -176,23 +163,9 @@ function getAllPokemonHTML(i, firstType, allTypes) {
     </div>`
 }*/
 
-/*Weiterer Code von Junus 
-async function init(){
-    showLoadingSpinner();
-    await loadPokemon();
-    hideLoadingSpinner();
-}
-
-function hideLoadingSpinner(){
-  document.getElementById('spinner').display = 'none';
-}
-
-function showLoadingSpinner(){
-  document.getElementById('spinner').display = 'block';
-}*/
 
 /*Noch machen: 
-Loadingspinner 
+
 Types in die kleine rendern
 Type Backgroundcolor 
 Suchfunktion 

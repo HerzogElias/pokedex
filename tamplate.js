@@ -1,6 +1,6 @@
 function getAllPokemonHTML(i,firstType,weightInKg) {
     return ` 
-    <div onclick="openBigPokemonCard(${i}), ${firstType},${weightInKg}" class="oneSmallPokemonCard">  
+    <div onclick="openBigPokemonCard(${i}), ${firstType},${weightInKg}" class="oneSmallPokemonCard b-${firstType}">  
         <h2>${allPokemons[i].name} </h2>
         <img class="pokemonImage" src="${allPokemons[i].image}">
     </div>`
