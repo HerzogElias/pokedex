@@ -4,12 +4,15 @@ let allPokemons = [];
 let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 let currentPokemons = [];
+let filterWord = document.getElementById('pokemonSearchInput').value;
 
 async function init() {
     showLoadingspinner()
     await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     await fetchPokemonStats(path = "pokemon/")
     hideLoadingspinner();
+    filterAndShowPokemons();
+    currentPokemons = allPokemons;
 }
 
 async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
@@ -144,31 +147,29 @@ function hideLoadingspinner() {
     document.getElementById('loadingspinnerDiv').classList.remove('loadingspinnerDiv');
 }
 
-/*Code von JUNUS 
-function getAllPokemonHTML(i, firstType, allTypes) {
-    let html = '<ul>';
-    for(let j=0; j < allTypes.length; j++){
-        type = allTypes[j];
-        html += `<li>${type}</li>`;
+
+function filterAndShowPokemons(filterWord) {
+    let filterword = document.getElementById('pokemonSearchInput').value;
+    currentPokemons = allPokemons.filter(allPokemons => allPokemons.name.toLowerCase().includes(filterWord.toLowerCase()));
+    renderPokemonCard();
+}
+
+function handleSearch() {
+    let input = document.getElementById('pokemonSearchInput').value.trim();
+    if (input.length >= 3 || input.length === 0) {
+        filterAndShowPokemons(input);
+    } else {
+        console.log("Bitte gib mindestens drei Buchstaben ein.");
     }
-    html += '</ul>';
-    
-    return ` 
-    <div onclick="openBogPokemonCard(${i})" class="oneSmallPokemonCard">  
-       <span class="end"> #${allPokemons[i].id}</span> 
-        <h2>${allPokemons[i].name} </h2>
-        ${html}
-        <img class="pokemonImage" src="${allPokemons[i].image}">
-        
-    </div>`
-}*/
+}
+
 
 
 /*Noch machen: 
 
-Types in die kleine rendern
-Type Backgroundcolor 
 Suchfunktion 
-Design der großen Karte 
+Design der großen Karte ergänzen <-> 
 Überprüfung responsive
+Suchfunktion responsive/ nicht responsive 
+Checkliste durchgehen
 */

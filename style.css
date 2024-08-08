@@ -162,6 +162,24 @@ h2 {
     justify-content: end;
 }
 
-table{
-    color:aliceblue;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    background-color: #ffffff; /* Weiße Hintergrundfarbe */
+    color: #333; /* Textfarbe */
+}
+table thead th {
+    background-color: #f2f2f2; /* Kopfzeile Hintergrundfarbe */
+    color: #333; /* Kopfzeile Textfarbe */
+    padding: 10px;
+    text-align: left;
+}
+table tbody td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Rahmenfarbe */
+}
+table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9; /* Wechselnde Zeilenfarbe */
 }

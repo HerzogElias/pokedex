@@ -1,10 +1,15 @@
-function getAllPokemonHTML(i,firstType,weightInKg) {
+function getAllPokemonHTML(i,firstType,weightInKg, allTypes) {
     return ` 
-    <div onclick="openBigPokemonCard(${i}), ${firstType},${weightInKg}" class="oneSmallPokemonCard b-${firstType}">  
-        <h2>${allPokemons[i].name} </h2>
+    <div onclick="openBigPokemonCard(${i})" class="oneSmallPokemonCard b-${firstType}">  
+        <h2>${allPokemons[i].name}</h2>
+        <div class="type-container">
+            ${allPokemons[i].type.join(', ')}
+        </div>
         <img class="pokemonImage" src="${allPokemons[i].image}">
-    </div>`
+    </div>`;
 }
+
+
 
 function getBigPokemonCardHTML(i, weightInKg){
     return`
