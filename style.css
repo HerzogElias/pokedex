@@ -76,10 +76,13 @@ input{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    border: green 1px solid;
     margin: 20px;
     padding: 15px;
     border-radius: 4%;
+}
+
+.oneSmallPokemonCard:hover{
+    cursor: pointer;
 }
 
 .pokemonImage {
@@ -111,7 +114,6 @@ h2 {
     justify-content: center;
     flex-direction: column;
     height:100vh;
-    border: yellow 1px solid;
 }
 
 .bigPokemonBottom{
@@ -150,8 +152,8 @@ h2 {
 
 .bigPokemonGenerals{
     width: 300px;
+    height: 250px;
 }
-
 
 .loadMorePokemon{
     width: 200px;
@@ -168,17 +170,17 @@ table {
     margin: 20px 0;
     font-size: 1em;
     background-color: #ffffff; /* Weiße Hintergrundfarbe */
-    color: #333; /* Textfarbe */
+    color: #2f5c96; /* Textfarbe */
 }
 table thead th {
     background-color: #f2f2f2; /* Kopfzeile Hintergrundfarbe */
-    color: #333; /* Kopfzeile Textfarbe */
+    color: #700e0e; /* Kopfzeile Textfarbe */
     padding: 10px;
     text-align: left;
 }
 table tbody td {
     padding: 10px;
-    border: 1px solid #ddd; /* Rahmenfarbe */
+    border: 1px solid #a13f3f; /* Rahmenfarbe */
 }
 table tbody tr:nth-of-type(even) {
     background-color: #f9f9f9; /* Wechselnde Zeilenfarbe */

@@ -1,21 +1,18 @@
-/*Define Global Variables */
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPokemons = [];
 let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 let currentPokemons = [];
-let filterWord = document.getElementById('pokemonSearchInput').value;
 
 async function init() {
     showLoadingspinner()
     await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     await fetchPokemonStats(path = "pokemon/")
     hideLoadingspinner();
-    filterAndShowPokemons();
-    currentPokemons = allPokemons;
+    currentPokemon = allPokemons;
 }
 
-async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
+async function fetchPokemon(path ="pokemon?limit=20&offset=0") {
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
     allPokemons = await Promise.all(responseToJson.results.map(async (result, index) => {
@@ -121,11 +118,11 @@ function nextBigPokemon() {
     renderBigPokemonCard(currentIndex);
 }
 
-function renderBigPokemonCard(i) {
+function renderBigPokemonCard(currentIndex) {
     let overlayRef = document.getElementById('overlayBigPokemon');
     let weightInKg = pokemonWeight(i);
     overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
-    openBigPokemonGeneral(i, weightInKg); // Aktualisiere den Inhalt direkt
+    openBigPokemonGeneral(i, weightInKg, currentIndex); // Aktualisiere den Inhalt direkt
 }
 
 function loadMorePokemons() {
@@ -148,28 +145,7 @@ function hideLoadingspinner() {
 }
 
 
-function filterAndShowPokemons(filterWord) {
-    let filterword = document.getElementById('pokemonSearchInput').value;
-    currentPokemons = allPokemons.filter(allPokemons => allPokemons.name.toLowerCase().includes(filterWord.toLowerCase()));
-    renderPokemonCard();
+function filterAndShowPokemons(){
+    let filterword = document.getElementbyId('filterInput').value;
+    currentPokemon = allPokemons.filter(allPokemons =>  allPokemons.name.toLowerCase().includes(filterWord.toLowerCase()));
 }
-
-function handleSearch() {
-    let input = document.getElementById('pokemonSearchInput').value.trim();
-    if (input.length >= 3 || input.length === 0) {
-        filterAndShowPokemons(input);
-    } else {
-        console.log("Bitte gib mindestens drei Buchstaben ein.");
-    }
-}
-
-
-
-/*Noch machen: 
-
-Suchfunktion 
-Design der großen Karte ergänzen <-> 
-Überprüfung responsive
-Suchfunktion responsive/ nicht responsive 
-Checkliste durchgehen
-*/

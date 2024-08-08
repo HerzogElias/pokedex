@@ -28,7 +28,7 @@ function getBigPokemonCardHTML(i, weightInKg){
 
 function openBigPokemonGeneral(i, weightInKg){
 console.log('open big general funktioniert');
-currentIndex = i; // Den aktuellen Index speichern
+currentIndex += i; // Den aktuellen Index speichern
 let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
 let bigPokemonStats = document.getElementById('bigPokemonStats');
 bigPokemonStats.innerHTML = "";
