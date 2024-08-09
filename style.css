@@ -155,13 +155,14 @@ h2 {
     height: 250px;
 }
 
+.buttonClass{
+    display: flex;
+    justify-content: center;
+}
 .loadMorePokemon{
     width: 200px;
     height: 35px;
     background-color: azure;
-    display: flex;
-    align-items: center;
-    justify-content: end;
 }
 
 table {

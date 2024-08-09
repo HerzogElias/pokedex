@@ -2,17 +2,15 @@ const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPokemons = [];
 let OFFSET = 0;
 let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
-let currentPokemons = [];
 
 async function init() {
     showLoadingspinner()
     await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     await fetchPokemonStats(path = "pokemon/")
     hideLoadingspinner();
-    currentPokemon = allPokemons;
 }
 
-async function fetchPokemon(path ="pokemon?limit=20&offset=0") {
+/*async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
     allPokemons = await Promise.all(responseToJson.results.map(async (result, index) => {
@@ -29,14 +27,32 @@ async function fetchPokemon(path ="pokemon?limit=20&offset=0") {
     }))
     renderPokemonCard();
     console.log(allPokemons);
-}
+}*/
 
+async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
+    let response = await fetch(BASE_URL + path);
+    let responseToJson = await response.json();
+    let newPokemon = await Promise.all(responseToJson.results.map(async (result, index) => {
+        const pokemonData = await fetchPokemonData(result.url);
+        return {
+            name: result.name,
+            id: OFFSET + index + 1,
+            image: pokemonData.sprites.front_default,
+            type: pokemonData.types.map(type => type.type.name),
+            height: pokemonData.height,
+            weight: pokemonData.weight,
+            stats: pokemonData.stats.map(stat => stat.base_stat),
+        }
+    }))
+    allPokemons = allPokemons.concat(newPokemon);
+    renderPokemonCard();
+    console.log(allPokemons);
+}
 async function fetchPokemonData(url) {
     let response = await fetch(url);
     let responseToJson = await response.json();
     return responseToJson;
 }
-
 async function fetchPokemonStats(path = "pokemon/") {
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
@@ -46,11 +62,22 @@ async function fetchPokemonStats(path = "pokemon/") {
             stats: pokemonStatsData.stats.map(stat => stat.base_stat),
         }
     }))
-
 }
 
+
+/*
 function renderPokemonCard() {
     let pokemonCard = document.getElementById('allPokemonCardSmall'); /Die klasse beinhaltet alle Pokemons/
+    for (let i = 0; i < allPokemons.length; i++) {
+        let firstType = allPokemons[i].type[0];
+        let allTypes = allPokemons[i].type;
+        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));
+    }
+}*/
+
+function renderPokemonCard() {
+    let pokemonCard = document.getElementById('allPokemonCardSmall');
+    pokemonCard.innerHTML = '';
     for (let i = 0; i < allPokemons.length; i++) {
         let firstType = allPokemons[i].type[0];
         let allTypes = allPokemons[i].type;
@@ -105,17 +132,17 @@ function lessBigPokemon() {
     } else {
         currentIndex = allPokemons.length - 1; // Zum letzten Pokémon wechseln
     }
-    renderBigPokemonCard(currentIndex);
+    renderBigPokemonCard(currentIndex, i);
 }
 
-function nextBigPokemon() {
+function nextBigPokemon(i) {
     console.log('next big pokemon geht!');
     if (currentIndex < allPokemons.length - 1) {
         currentIndex++;
     } else {
         currentIndex = 0; // Zum ersten Pokémon wechseln
     }
-    renderBigPokemonCard(currentIndex);
+    renderBigPokemonCard(i, currentIndex);
 }
 
 function renderBigPokemonCard(currentIndex) {
@@ -127,7 +154,7 @@ function renderBigPokemonCard(currentIndex) {
 
 function loadMorePokemons() {
     console.log('loading more Pokemons funktioniert ');
-    OFFSET += 20;
+    OFFSET +=20;
     init();
 }
 
@@ -144,8 +171,7 @@ function hideLoadingspinner() {
     document.getElementById('loadingspinnerDiv').classList.remove('loadingspinnerDiv');
 }
 
-
-function filterAndShowPokemons(){
+function filterPokemon(){
     let filterword = document.getElementbyId('filterInput').value;
-    currentPokemon = allPokemons.filter(allPokemons =>  allPokemons.name.toLowerCase().includes(filterWord.toLowerCase()));
+    currentPokemon = allPokemons.filter(pokemon =>  pokemon.name.toLowerCase().includes(filterWord.toLowerCase()));
 }
