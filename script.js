@@ -84,7 +84,6 @@ function renderPokemonCard() {
         pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));
     }
 }
-
 function openBigPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon')
     overlayRef.classList.toggle('dNone');
@@ -145,9 +144,9 @@ function nextBigPokemon(i) {
     renderBigPokemonCard(i, currentIndex);
 }
 
-function renderBigPokemonCard(currentIndex) {
+function renderBigPokemonCard(i, currentIndex) {
     let overlayRef = document.getElementById('overlayBigPokemon');
-    let weightInKg = pokemonWeight(i);
+    let weightInKg = pokemonWeight[i];
     overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
     openBigPokemonGeneral(i, weightInKg, currentIndex); // Aktualisiere den Inhalt direkt
 }
@@ -171,7 +170,23 @@ function hideLoadingspinner() {
     document.getElementById('loadingspinnerDiv').classList.remove('loadingspinnerDiv');
 }
 
-function filterPokemon(){
-    let filterword = document.getElementbyId('filterInput').value;
-    currentPokemon = allPokemons.filter(pokemon =>  pokemon.name.toLowerCase().includes(filterWord.toLowerCase()));
+function filterAndShowPokemons(){
+    let filterWord = document.getElementById('pokemonSearchInput').value;
+    let filteredPokemons = allPokemons.filter(pokemon => 
+        pokemon.name.toLowerCase().includes(filterWord.toLowerCase())
+    );
+    renderFilteredPokemonCard(filteredPokemons);
 }
+
+// Neue Funktion erstellen, die nur die gefilterten Pokémon rendert
+function renderFilteredPokemonCard(filteredPokemons) {
+    let pokemonCard = document.getElementById('allPokemonCardSmall');
+    pokemonCard.innerHTML = ''; // Clear the current view
+    for (let i = 0; i < filteredPokemons.length; i++) {
+        let firstType = filteredPokemons[i].type[0];
+        let allTypes = filteredPokemons[i].type;
+        // getAllPokemonHTML aufrufen, um HTML für das Pokémon zu generieren
+        pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, filteredPokemons[i].weight, allTypes);
+    }
+}
+
