@@ -49,7 +49,7 @@ function openBigPokemonGeneral(i, weightInKg){
         <div class="bigPokemonBottom">
         <img onclick="lessBigPokemon(${i}, ${weightInKg})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
         <img onclick="closeBigPokemon()"  class="bigPokemonWayPicutre" src="img/deleate.png">
-        <img onclick="nextBigPokemon()" class="bigPokemonWayPicutre" src="img/hin.png"> 
+        <img onclick="nextBigPokemon(${i})" class="bigPokemonWayPicutre" src="img/hin.png"> 
         </div> 
     `;
     }
@@ -92,7 +92,7 @@ bigPokemonStats.innerHTML =`
      <div class="bigPokemonBottom">
     <img onclick="lessBigPokemon(${i})" class="bigPokemonWayPicutre" src="img/zurueck.png">  
     <img onclick="closeBigPokemon()"  class="bigPokemonWayPicutre" src="img/deleate.png">
-    <img onclick="nextBigPokemon()" class="bigPokemonWayPicutre" src="img/hin.png"> 
+    <img onclick="nextBigPokemon(${i})" class="bigPokemonWayPicutre" src="img/hin.png"> 
     </div> 
 `;
 }
