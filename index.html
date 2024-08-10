@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="colors.css">
     <script src="script.js"></script>
-    <script src="tamplate.js"></script>
+    <script src="template.js"></script>
+    <script src="filter.js"></script>
     <link rel="shortcut icon" href="img/pokemon.jpg" type="image/x-icon">
     <title>Pokedex</title>
 </head>
-<body onload="init()" class="nScrollbar">
-    <div class="loadingspinnerDiv" id="loadingspinnerDiv"> 
-    <span id="loadingspinner" class="loader dNone"></span>
-    </div>
-    <input type="search" placeholder="Serach Pokemon" id="pokemonSearchInput" onkeyup="handleSearch()"> 
 
-    <div id="overlayBigPokemon" class="overlayBigPokemon dNone"></div>
-    <header id="header"> 
-        <h1> My own Pokedex</h1>
-        <img class="headerImg" src="img/aot.jpg"> 
-    </header>
-    <div id="content"> 
-    <div id="allPokemonCardSmall" class="allPokemonCardSmall"></div> 
-    <div class="buttonClass"> 
-    <button class="loadMorePokemon" id="loadMorePokemon" onclick="loadMorePokemons()">Load more Pokemon</button>
+<body onload="init()" class="nScrollbar">
+    <div class="loadingspinnerDiv" id="loadingspinnerDiv">
+        <span id="loadingspinner" class="loader dNone"></span>
     </div>
+    <div id="overlayBigPokemon" class="overlayBigPokemon dNone"></div>
+    <header id="header">
+        <h1> Pokedex </h1>
+        <input type="search" placeholder="Serach Pokemon" id="pokemonSearchInput" onkeyup="handleSearch()">
+    </header>
+    <div id="content">
+        <div id="allPokemonCardSmall" class="allPokemonCardSmall"></div>
+        <div class="buttonClass">
+            <button class="loadMorePokemon" id="loadMorePokemon" onclick="loadMorePokemons()">Load more Pokemon</button>
+        </div>
     </div>
 </body>
+
 </html>
