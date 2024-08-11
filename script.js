@@ -35,6 +35,7 @@ async function fetchPokemonData(url) {
     let responseToJson = await response.json();
     return responseToJson;
 }
+
 async function fetchPokemonStats(path = "pokemon/") {
     let response = await fetch(BASE_URL + path);
     let responseToJson = await response.json();
@@ -55,12 +56,14 @@ function renderPokemonCard() {
         pokemonCard.innerHTML += getAllPokemonHTML(i, firstType, allTypes, pokemonWeight(i));
     }
 }
+
 function openBigPokemonCard(i) {
-    let overlayRef = document.getElementById('overlayBigPokemon');
-    overlayRef.classList.toggle('dNone');
-    document.getElementById('header').classList.add('dNone');
+    const overlay = document.getElementById('overlayBigPokemon');
+    overlay.style.display = 'block';
     document.body.classList.add('no-scroll');
-    overlayRef.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
+    overlay.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
+    const header = document.getElementById('header');
+    header.style.display = 'none';
 }
 
 function pokemonWeight(i) {
@@ -88,13 +91,12 @@ function openBigPkemonspeizifies(i) {
     pokemonStats.innerHTML = '';
     pokemonStats.innerHTML += getPokemonStatsHTML(i);
 }
-
 function closeBigPokemon() {
-    console.log('close big Pokemon hat funktioniert');
     document.body.classList.remove('no-scroll');
-    let overlayRef = document.getElementById('overlayBigPokemon')
-    overlayRef.classList.toggle('dNone');
-    document.getElementById('header').classList.remove('dNone');
+    const overlay = document.getElementById('overlayBigPokemon');
+    overlay.style.display = 'none';
+    const header = document.getElementById('header');
+    header.style.display = 'block';
 }
 
 function lessBigPokemon() {
@@ -131,25 +133,22 @@ function loadMorePokemons() {
 }
 
 function showLoadingspinner() {
-    // Zeige das Overlay und den Lade-Spinner
     const overlay = document.getElementById('overlayLoadingspinner');
     overlay.style.display = 'flex';
-    
-    // Verhindere das Scrollen
     document.body.classList.add('no-scroll');
 }
 
 function hideLoadingspinner() {
-    // Verstecke das Overlay
     const overlay = document.getElementById('overlayLoadingspinner');
     overlay.style.display = 'none';
-    
-    // Erlaube wieder das Scrollen
     document.body.classList.remove('no-scroll');
-    
-    // Zeige den Inhalt und Header
     const content = document.getElementById('content');
     const header = document.getElementById('header');
     content.style.display = 'block';
     header.style.display = 'block';
 }
+
+
+
+
+

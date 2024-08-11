@@ -41,13 +41,22 @@ function getAllFilterdPokemonHTML(i, firstType) {
         <img class="pokemonImage" src="${filteredPokemons[i].image}">
     </div>`;
 }
-
+/*
 function openBigFilteredPokemonCard(i) {
     console.log('openBigFilterPokemonCard hat funktioniert');
     let overlayRef = document.getElementById('overlayBigPokemon');
     overlayRef.classList.toggle('dNone');
     document.body.classList.add('no-scroll');
     overlayRef.innerHTML = getBigFilterdPokemonCardHTML(i, pokemonWeightFiltered(i));
+}*/
+
+function openBigFilteredPokemonCard(i) {
+    const overlay = document.getElementById('overlayBigPokemon');
+    overlay.style.display = 'block';  // Zeige das Overlay an
+    document.body.classList.add('no-scroll');  // Verhindere das Scrollen
+    overlay.innerHTML = getBigFilterdPokemonCardHTML(i, pokemonWeightFiltered(i));  // Setze den Inhalt des Overlays
+    const header = document.getElementById('header');
+    header.style.display = 'none';  // Blende den Header aus
 }
 
 function getBigFilterdPokemonCardHTML(i, weightInKg) {
