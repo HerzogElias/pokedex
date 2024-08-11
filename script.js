@@ -5,30 +5,11 @@ let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
 let filteredPokemons = [];
 
 async function init() {
-    showLoadingspinner()
+    showLoadingspinner();
     await fetchPokemon(path = `pokemon?limit=20&offset=${OFFSET}`)
     await fetchPokemonStats(path = "pokemon/")
     hideLoadingspinner();
 }
-
-/*async function fetchPokemon(path = `pokemon?limit=10&offset=0`){
-    let response = await fetch(BASE_URL + path);
-    let responseToJson = await response.json();
-    allPokemons = await Promise.all(responseToJson.results.map(async (result, index) => {
-        const pokemonData = await fetchPokemonData(result.url);
-        return {
-            name: result.name,
-            id: index + 1,
-            image: pokemonData.sprites.front_default,
-            type: pokemonData.types.map(type => type.type.name),
-            height: pokemonData.height,
-            weight: pokemonData.weight,
-            stats: pokemonData.stats.map(stat => stat.base_stat),
-        }
-    }))
-    renderPokemonCard();
-    console.log(allPokemons);
-}*/
 
 async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
     let response = await fetch(BASE_URL + path);
@@ -75,9 +56,10 @@ function renderPokemonCard() {
     }
 }
 function openBigPokemonCard(i) {
-    let overlayRef = document.getElementById('overlayBigPokemon')
+    let overlayRef = document.getElementById('overlayBigPokemon');
     overlayRef.classList.toggle('dNone');
     document.body.classList.add('no-scroll');
+    document.getElementById('header').classList.add('dNone');
     overlayRef.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
 }
 
@@ -112,6 +94,7 @@ function closeBigPokemon() {
     document.body.classList.remove('no-scroll');
     let overlayRef = document.getElementById('overlayBigPokemon')
     overlayRef.classList.toggle('dNone');
+    document.getElementById('header').classList.remove('dNone');
 }
 
 function lessBigPokemon() {
@@ -148,15 +131,10 @@ function loadMorePokemons() {
 }
 
 function showLoadingspinner() {
-    document.getElementById('loadingspinner').classList.remove('dNone');
-    document.getElementById('content').classList.add('dNone');
-    document.getElementById('header').classList.add('dNone');
+    console.log('show loadingspinner funktioniert');
+    
 }
 
 function hideLoadingspinner() {
-    document.getElementById('loadingspinner').classList.add('dNone');
-    document.getElementById('content').classList.remove('dNone');
-    document.getElementById('header').classList.remove('dNone');
-    document.getElementById('loadingspinnerDiv').classList.remove('loadingspinnerDiv');
+    console.log('hide loadingspinner funktioniert');
 }
-
