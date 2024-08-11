@@ -3,16 +3,19 @@ body {
     height: 100vh;
     overflow: auto;
 }
+
 header {
     position: relative;
     width: 100%;
-    height: 300px; /* Du kannst die HÃ¶he anpassen, wie es dir passt */
+    height: 300px;
+    /* Du kannst die HÃ¶he anpassen, wie es dir passt */
     background-image: url('img/aot.jpg');
     background-size: cover;
     background-position: center;
     margin: 0;
     padding: 0;
-    filter: brightness(2); /* Heller als das Originalbild */
+    filter: brightness(2);
+    /* Heller als das Originalbild */
 }
 
 h1 {
@@ -24,7 +27,7 @@ h1 {
     margin: 0;
 }
 
-input{
+input {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -32,7 +35,7 @@ input{
     font-size: 1em;
 }
 
-.content{
+.content {
     width: 1920px;
     display: flex;
     align-items: center;
@@ -40,51 +43,95 @@ input{
 
 .no-scroll {
     overflow: hidden;
-  }
+}
+
+#overlayLoadingspinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+}
 
 /*Loadingspinner*/
-.loadingspinnerDiv{
+.loadingspinnerDiv {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .loader {
     width: 70px;
     height: 70px;
     display: flex;
-    animation : rotate 2s linear infinite;
-  }
-  .loader:before,
-  .loader:after {
-    content:"";
-    flex:1;
-    background:#fff;
+    animation: rotate 2s linear infinite;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    flex: 1;
+    background: #fff;
     animation: mvx 0.8s infinite linear alternate;
-  }
-  .loader:before {
+}
+
+.loader:before {
     background: #FF3D00;
-    animation-name:mvrx;
-  }
+    animation-name: mvrx;
+}
 
-  @keyframes rotate {
-    100% {transform: rotate(360deg)}
-  }
-  @keyframes mvx {
-    0% , 40% {transform: translateX(0px)}
-    20% , 60% {transform: translateX(8px)}
-    100% {transform: translateX(15px)}
-  }
-  @keyframes mvrx {
-    0% , 40% {transform: translateX(0px)}
-    20% , 60% {transform: translateX(-8px)}
-    100% {transform: translateX(-15px)}
-  }
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg)
+    }
+}
 
-input{
+@keyframes mvx {
+
+    0%,
+    40% {
+        transform: translateX(0px)
+    }
+
+    20%,
+    60% {
+        transform: translateX(8px)
+    }
+
+    100% {
+        transform: translateX(15px)
+    }
+}
+
+@keyframes mvrx {
+
+    0%,
+    40% {
+        transform: translateX(0px)
+    }
+
+    20%,
+    60% {
+        transform: translateX(-8px)
+    }
+
+    100% {
+        transform: translateX(-15px)
+    }
+}
+
+input {
     height: 40px;
     width: 300px;
 }
-.headerImg{
+
+.headerImg {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -109,7 +156,7 @@ input{
     border-radius: 4%;
 }
 
-.oneSmallPokemonCard:hover{
+.oneSmallPokemonCard:hover {
     cursor: pointer;
 }
 
@@ -136,40 +183,42 @@ h2 {
     background-color: rgba(79, 64, 64, 0.897);
 }
 
-.bigPokemonCard{
+.bigPokemonCard {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height:100vh;
+    height: 100vh;
 }
 
-.bigPokemonBottom{
+.bigPokemonBottom {
     display: flex;
     justify-content: space-evenly;
 }
-.bigPokemonWayPicutre{
+
+.bigPokemonWayPicutre {
     width: 40px;
     height: 40px;
 }
 
-.bigPokemonCardTop{
+.bigPokemonCardTop {
     width: 300px;
-    height:200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
-.bigPokemonCardMiddle{
+.bigPokemonCardMiddle {
     width: 300px;
     height: 50px;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
 }
-.bigPokemonButton{
+
+.bigPokemonButton {
     width: 100px;
     height: 25px;
     background-color: rgb(139, 100, 53);
@@ -178,16 +227,17 @@ h2 {
     width: 300px;
 }
 
-.bigPokemonGenerals{
+.bigPokemonGenerals {
     width: 300px;
     height: 250px;
 }
 
-.buttonClass{
+.buttonClass {
     display: flex;
     justify-content: center;
 }
-.loadMorePokemon{
+
+.loadMorePokemon {
     width: 200px;
     height: 35px;
     background-color: azure;
@@ -198,19 +248,28 @@ table {
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 1em;
-    background-color: #ffffff; /* Weiße Hintergrundfarbe */
-    color: #2f5c96; /* Textfarbe */
+    background-color: #ffffff;
+    /* Weiße Hintergrundfarbe */
+    color: #2f5c96;
+    /* Textfarbe */
 }
+
 table thead th {
-    background-color: #f2f2f2; /* Kopfzeile Hintergrundfarbe */
-    color: #700e0e; /* Kopfzeile Textfarbe */
+    background-color: #f2f2f2;
+    /* Kopfzeile Hintergrundfarbe */
+    color: #700e0e;
+    /* Kopfzeile Textfarbe */
     padding: 10px;
     text-align: left;
 }
+
 table tbody td {
     padding: 10px;
-    border: 1px solid #a13f3f; /* Rahmenfarbe */
+    border: 1px solid #a13f3f;
+    /* Rahmenfarbe */
 }
+
 table tbody tr:nth-of-type(even) {
-    background-color: #f9f9f9; /* Wechselnde Zeilenfarbe */
+    background-color: #f9f9f9;
+    /* Wechselnde Zeilenfarbe */
 }

@@ -58,8 +58,8 @@ function renderPokemonCard() {
 function openBigPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon');
     overlayRef.classList.toggle('dNone');
-    document.body.classList.add('no-scroll');
     document.getElementById('header').classList.add('dNone');
+    document.body.classList.add('no-scroll');
     overlayRef.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
 }
 
@@ -131,10 +131,25 @@ function loadMorePokemons() {
 }
 
 function showLoadingspinner() {
-    console.log('show loadingspinner funktioniert');
+    // Zeige das Overlay und den Lade-Spinner
+    const overlay = document.getElementById('overlayLoadingspinner');
+    overlay.style.display = 'flex';
     
+    // Verhindere das Scrollen
+    document.body.classList.add('no-scroll');
 }
 
 function hideLoadingspinner() {
-    console.log('hide loadingspinner funktioniert');
+    // Verstecke das Overlay
+    const overlay = document.getElementById('overlayLoadingspinner');
+    overlay.style.display = 'none';
+    
+    // Erlaube wieder das Scrollen
+    document.body.classList.remove('no-scroll');
+    
+    // Zeige den Inhalt und Header
+    const content = document.getElementById('content');
+    const header = document.getElementById('header');
+    content.style.display = 'block';
+    header.style.display = 'block';
 }
