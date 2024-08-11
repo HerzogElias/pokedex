@@ -8,7 +8,6 @@ header {
     position: relative;
     width: 100%;
     height: 300px;
-    /* Du kannst die HÃ¶he anpassen, wie es dir passt */
     background-image: url('img/aot.jpg');
     background-size: cover;
     background-position: center;
@@ -57,13 +56,6 @@ input {
     align-items: center;
     z-index: 1000;
 
-}
-
-/*Loadingspinner*/
-.loadingspinnerDiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .loader {
