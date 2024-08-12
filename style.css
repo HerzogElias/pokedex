@@ -123,6 +123,32 @@ input {
     width: 300px;
 }
 
+#notificationBanner{
+    display: none; 
+    background-color: #f8d7da; 
+    color: #721c24; padding: 10px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    text-align: center; 
+    z-index: 1000;
+}
+
+#notificationBanner button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #721c24;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#notificationBanner button:hover {
+    background-color: #f5c6cb;
+}
+
 .headerImg {
     width: 100%;
     height: 200px;
@@ -186,11 +212,14 @@ h2 {
 .bigPokemonBottom {
     display: flex;
     justify-content: space-evenly;
+    cursor: pointer;
+    background-color: rgb(49, 151, 117);
 }
 
 .bigPokemonWayPicutre {
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
 
 .bigPokemonCardTop {
@@ -200,31 +229,31 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #f9f9f9;
 }
 
 .bigPokemonCardMiddle {
     width: 300px;
-    height: 50px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f2f2f2;
+    background-color: #f5c6cb;
 }
 
 .bigPokemonButton {
     width: 100px;
     height: 25px;
-    background-color: rgb(204, 145, 74);
     display: flex;
     align-items: center;
     width: 300px;
+    background-color: #FF3D00;
 }
 
 .bigPokemonGenerals {
     width: 300px;
-    height: 250px;
-    background-color: darkkhaki;
-    border-radius: 3%;
+    height: 240px;
+    background-color: rgb(87, 170, 172);
 }
 
 .buttonClass {
@@ -236,6 +265,11 @@ h2 {
     width: 200px;
     height: 35px;
     background-color: azure;
+}
+.buttonClass{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 40px;
 }
 
 table {

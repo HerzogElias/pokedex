@@ -19,7 +19,13 @@
         <div class="loader" id="loader"></div>
     </div>
 
-    <div id="overlayBigPokemon" class="dNone"></div>
+    <div id="overlayBigPokemon" class="dNone">
+    </div>
+    
+    <div id="notificationBanner">
+        Bitte gebe drei Buchstaben ein zum Suchen. <button onclick="hideBanner()">OK</button>
+    </div>
+    
     <header id="header">
         <h1> Pokedex </h1>
         <input type="search" placeholder="Serach Pokemon" id="pokemonSearchInput" onkeyup="handleSearch()">
@@ -31,5 +37,4 @@
         </div>
     </div>
 </body>
-
 </html>

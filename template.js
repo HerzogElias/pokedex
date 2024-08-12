@@ -1,4 +1,4 @@
-function getAllPokemonHTML(i,firstType,weightInKg, allTypes) {
+function getAllPokemonHTML(i, firstType, weightInKg, allTypes) {
     return ` 
     <div onclick="openBigPokemonCard(${i})" class="oneSmallPokemonCard b-${firstType}">  
         <h2>${allPokemons[i].name}</h2>
@@ -9,32 +9,33 @@ function getAllPokemonHTML(i,firstType,weightInKg, allTypes) {
     </div>`;
 }
 
-function getBigPokemonCardHTML(i, weightInKg){
-    return`
+function getBigPokemonCardHTML(i, weightInKg) {
+    return `
     <div class="bigPokemonCard"> 
     <div class ="bigPokemonCardTop"> 
       <h2>${allPokemons[i].name} </h2>
     <img class="pokemonImage" src="${allPokemons[i].image}">
     </div>
     <div class="bigPokemonCardMiddle">  
-    <button onclick="openBigPokemonGeneral(${i}, ${weightInKg})" class="bigPokemonButton"> General </button>
-    <button onclick="openBigPokemonSpeizifies(${i})" class="bigPokemonButton" id="pokemonBigStats"> Specifices </button> 
+    <button onclick="openBigPokemonStats(${i})" class="bigPokemonButton" id="pokemonBigStats"> Stats </button> 
+    <button onclick="openBigPokemonSpecials(${i}, ${weightInKg})" class="bigPokemonButton"> Specials </button>
     </div>
-    <div id="bigPokemonGeneral">  </div>
-    <div id="bigPokemonStats" </div>`;
-} 
+    <div id="bigPokemonGeneral"> </div>
+    <div id="bigPokemonStats" </div>
+    `;
+}
 
-function openBigPokemonGeneral(i, weightInKg){
+function openBigPokemonSpecials(i, weightInKg) {
     console.log('open big general funktioniert');
     currentIndex = i; // Den aktuellen Index speichern
     let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
     let bigPokemonStats = document.getElementById('bigPokemonStats');
-    
+
     // Clear the other div's content
     bigPokemonStats.innerHTML = "";
-    
-    bigPokemonGeneral.innerHTML=`   
-        <div class="bigPokemonGenerals"> 
+
+    bigPokemonGeneral.innerHTML = `   
+        <div class="bigPokemonGenerals" id="bigPokemonGeneral"> 
         <table>
             <tr>
                 <td>Weight</td>
@@ -52,15 +53,15 @@ function openBigPokemonGeneral(i, weightInKg){
         <img onclick="nextBigPokemon(${i})" class="bigPokemonWayPicutre" src="img/hin.png"> 
         </div> 
     `;
-    }
+}
 
-function openBigPokemonSpeizifies(i){
-console.log('States funkiton funktioniert');
-currentIndex=i;
-let bigPokemonStats= document.getElementById('bigPokemonStats');
-let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
-bigPokemonGeneral.innerHTML = "";
-bigPokemonStats.innerHTML =`
+function openBigPokemonStats(i) {
+    console.log('States funkiton funktioniert');
+    currentIndex = i;
+    let bigPokemonStats = document.getElementById('bigPokemonStats');
+    let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
+    bigPokemonGeneral.innerHTML = "";
+    bigPokemonStats.innerHTML = `
  <div class="bigPokemonGenerals"> 
     <table>
         <tr>

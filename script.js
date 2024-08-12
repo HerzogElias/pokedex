@@ -1,7 +1,7 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let allPokemons = [];
 let OFFSET = 0;
-let currentIndex = 0; // Globaler Index für das aktuell angezeigte Pokémon
+let currentIndex = 0; 
 let filteredPokemons = [];
 
 async function init() {
@@ -30,6 +30,7 @@ async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
     renderPokemonCard();
     console.log(allPokemons);
 }
+
 async function fetchPokemonData(url) {
     let response = await fetch(url);
     let responseToJson = await response.json();
@@ -64,6 +65,7 @@ function openBigPokemonCard(i) {
     overlay.innerHTML = getBigPokemonCardHTML(i, pokemonWeight(i));
     const header = document.getElementById('header');
     header.style.display = 'none';
+    openBigPokemonStats(i);
 }
 
 function pokemonWeight(i) {
@@ -72,7 +74,7 @@ function pokemonWeight(i) {
     return weightInKg;
 }
 
-function openBigPokemonGeneral(i) {
+function openBigPokemonSpecials(i) {
     console.log('Generals anzeigen funktioniert');
     getBigPokemonCardHTML(i, weightInKg);
 }
@@ -123,7 +125,8 @@ function renderBigPokemonCard(i, currentIndex) {
     let overlayRef = document.getElementById('overlayBigPokemon');
     let weightInKg = pokemonWeight(i);
     overlayRef.innerHTML = getBigPokemonCardHTML(i, weightInKg);
-    openBigPokemonGeneral(i, weightInKg, currentIndex); // Aktualisiere den Inhalt direkt
+    openBigPokemonSpecials(i, weightInKg, currentIndex);
+    openBigPokemonStats(i);
 }
 
 function loadMorePokemons() {

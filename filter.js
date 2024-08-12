@@ -1,4 +1,3 @@
-/* Filterfunktion*/
 function filterAndShowPokemons() {
     let filterWord = document.getElementById('pokemonSearchInput').value;
     let filteredPokemons = allPokemons.filter(pokemon =>
@@ -11,21 +10,30 @@ function handleSearch() {
     let input = document.getElementById('pokemonSearchInput').value.trim();
     if (input.length >= 3 || input.length === 0) {
         filterAndShowPokemons(input);
+        hideBanner();
     } else {
-        // Optionale Nachricht anzeigen, wenn weniger als 3 Buchstaben
+        showBanner();
         console.log("Bitte gib mindestens drei Buchstaben ein.");
     }
 }
 
+function showBanner() {
+    const banner = document.getElementById('notificationBanner');
+    banner.style.display = 'block';
+}
+
+function hideBanner() {
+    const banner = document.getElementById('notificationBanner');
+    banner.style.display = 'none';
+}
+
 function renderFilteredPokemonCard(pokemonData) {
-    // Weist den globalen filteredPokemons die übergebenen Daten zu
     filteredPokemons = pokemonData;
 
     let pokemonCard = document.getElementById('allPokemonCardSmall');
     pokemonCard.innerHTML = '';
     for (let i = 0; i < filteredPokemons.length; i++) {
         let firstType = filteredPokemons[i].type[0];
-        // Aufruf von getAllFilterdPokemonHTML, um HTML für das Pokémon zu generieren
         pokemonCard.innerHTML += getAllFilterdPokemonHTML(i, firstType);
     }
 }
@@ -41,22 +49,15 @@ function getAllFilterdPokemonHTML(i, firstType) {
         <img class="pokemonImage" src="${filteredPokemons[i].image}">
     </div>`;
 }
-/*
-function openBigFilteredPokemonCard(i) {
-    console.log('openBigFilterPokemonCard hat funktioniert');
-    let overlayRef = document.getElementById('overlayBigPokemon');
-    overlayRef.classList.toggle('dNone');
-    document.body.classList.add('no-scroll');
-    overlayRef.innerHTML = getBigFilterdPokemonCardHTML(i, pokemonWeightFiltered(i));
-}*/
 
 function openBigFilteredPokemonCard(i) {
     const overlay = document.getElementById('overlayBigPokemon');
-    overlay.style.display = 'block';  // Zeige das Overlay an
-    document.body.classList.add('no-scroll');  // Verhindere das Scrollen
-    overlay.innerHTML = getBigFilterdPokemonCardHTML(i, pokemonWeightFiltered(i));  // Setze den Inhalt des Overlays
+    overlay.style.display = 'block'; 
+    document.body.classList.add('no-scroll'); 
+    overlay.innerHTML = getBigFilterdPokemonCardHTML(i, pokemonWeightFiltered(i)); 
     const header = document.getElementById('header');
-    header.style.display = 'none';  // Blende den Header aus
+    header.style.display = 'none';  
+    openBigPokemonStatsFiltered(i);
 }
 
 function getBigFilterdPokemonCardHTML(i, weightInKg) {
@@ -67,8 +68,8 @@ function getBigFilterdPokemonCardHTML(i, weightInKg) {
             <img class="pokemonImage" src="${filteredPokemons[i].image}">
         </div>
         <div class="bigPokemonCardMiddle">  
-            <button onclick="openBigPokemonGeneralFiltered(${i}, ${weightInKg})" class="bigPokemonButton">General</button>
-            <button onclick="openBigPokemonSpeizifiesFiltered(${i})" class="bigPokemonButton" id="pokemonBigStats">Specifics</button> 
+        <button onclick="openBigPokemonStatsFiltered(${i})" class="bigPokemonButton" id="pokemonBigStats">Stats</button> 
+            <button onclick="openBigPokemonSpecialFiltered(${i}, ${weightInKg})" class="bigPokemonButton">Spezial</button>
         </div>
         <div id="bigPokemonGeneral"></div>
         <div id="bigPokemonStats"></div>
@@ -81,15 +82,13 @@ function pokemonWeightFiltered(i) {
     return weightInKg;
 }
 
-function openBigPokemonGeneralFiltered(i, weightInKg) {
+function openBigPokemonSpecialFiltered(i, weightInKg) {
     console.log('open big general funktioniert');
-    currentIndex = i; // Den aktuellen Index speichern
+    currentIndex = i; 
     let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
     let bigPokemonStats = document.getElementById('bigPokemonStats');
 
-    // Clear the other div's content
     bigPokemonStats.innerHTML = "";
-
     bigPokemonGeneral.innerHTML = `   
         <div class="bigPokemonGenerals"> 
         <table>
@@ -111,7 +110,7 @@ function openBigPokemonGeneralFiltered(i, weightInKg) {
     `;
 }
 
-function openBigPokemonSpeizifiesFiltered(i) {
+function openBigPokemonStatsFiltered(i) {
     console.log('States funkiton funktioniert');
     currentIndex = i;
     let bigPokemonStats = document.getElementById('bigPokemonStats');
@@ -153,11 +152,12 @@ function openBigPokemonSpeizifiesFiltered(i) {
         </div> 
     `;
 }
+
 function renderBigFilteredPokemonCard(i) {
     let overlayRef = document.getElementById('overlayBigPokemon');
-    let weightInKg = pokemonWeightFiltered(i); // Berechnet das Gewicht aus filteredPokemons
+    let weightInKg = pokemonWeightFiltered(i); 
     overlayRef.innerHTML = getBigFilterdPokemonCardHTML(i, weightInKg);
-    openBigPokemonGeneralFiltered(i, weightInKg); // Aktualisiert den Inhalt direkt
+    openBigPokemonSpecialFiltered(i, weightInKg); 
 }
 
 function nextBigFilteredPokemon(){
@@ -165,9 +165,10 @@ function nextBigFilteredPokemon(){
     if (currentIndex < filteredPokemons.length - 1) {
         currentIndex++;
     } else {
-        currentIndex = 0; // Zum ersten Pokémon wechseln
+        currentIndex = 0; 
     }
     renderBigFilteredPokemonCard(currentIndex);
+    openBigPokemonStatsFiltered(currentIndex);
 }
 
 function lessBigFilteredPokemon(){
@@ -175,7 +176,8 @@ function lessBigFilteredPokemon(){
     if (currentIndex > 0) {
         currentIndex--;
     } else {
-        currentIndex = filteredPokemons.length - 1; // Zum letzten Pokémon wechseln
+        currentIndex = filteredPokemons.length - 1; 
     }
-    renderBigFilteredPokemonCard(currentIndex) 
+    renderBigFilteredPokemonCard(currentIndex);
+    openBigPokemonStatsFiltered(currentIndex); 
 }
