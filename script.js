@@ -28,7 +28,6 @@ async function fetchPokemon(path = `pokemon?limit=10&offset=0`) {
     }))
     allPokemons = allPokemons.concat(newPokemon);
     renderPokemonCard();
-    console.log(allPokemons);
 }
 
 async function fetchPokemonData(url) {
@@ -75,12 +74,10 @@ function pokemonWeight(i) {
 }
 
 function openBigPokemonSpecials(i) {
-    console.log('Generals anzeigen funktioniert');
     getBigPokemonCardHTML(i, weightInKg);
 }
 
 function openBigPkemonspeizifies(i) {
-    console.log('Spezifies anzeigen funktioniert');
     let pokemonStats = document.getElementById('pokemonBigStats');
     //*Folgende Variablen gelten nur zur Information*//
     let hp = allPokemons[i].stats[0];
@@ -102,7 +99,6 @@ function closeBigPokemon() {
 }
 
 function lessBigPokemon() {
-    console.log('less big Pokemon funktioniert');
     if (currentIndex > 0) {
         currentIndex--;
     } else {
@@ -112,7 +108,6 @@ function lessBigPokemon() {
 }
 
 function nextBigPokemon() {
-    console.log('next big pokemon geht!');
     if (currentIndex < allPokemons.length - 1) {
         currentIndex++;
     } else {
@@ -130,7 +125,6 @@ function renderBigPokemonCard(i, currentIndex) {
 }
 
 function loadMorePokemons() {
-    console.log('loading more Pokemons funktioniert ');
     OFFSET += 20;
     init();
 }

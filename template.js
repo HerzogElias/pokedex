@@ -26,15 +26,17 @@ function getBigPokemonCardHTML(i, weightInKg) {
 }
 
 function openBigPokemonSpecials(i, weightInKg) {
-    console.log('open big general funktioniert');
-    currentIndex = i; // Den aktuellen Index speichern
+    currentIndex = i;
     let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
     let bigPokemonStats = document.getElementById('bigPokemonStats');
-
-    // Clear the other div's content
     bigPokemonStats.innerHTML = "";
 
-    bigPokemonGeneral.innerHTML = `   
+    bigPokemonGeneral.innerHTML = openBigPokemonSpecialsHTML(i,weightInKg)
+    
+}
+
+function openBigPokemonSpecialsHTML(i,weightInKg) {
+    return `
         <div class="bigPokemonGenerals" id="bigPokemonGeneral"> 
         <table>
             <tr>
@@ -56,13 +58,16 @@ function openBigPokemonSpecials(i, weightInKg) {
 }
 
 function openBigPokemonStats(i) {
-    console.log('States funkiton funktioniert');
     currentIndex = i;
     let bigPokemonStats = document.getElementById('bigPokemonStats');
     let bigPokemonGeneral = document.getElementById('bigPokemonGeneral');
     bigPokemonGeneral.innerHTML = "";
-    bigPokemonStats.innerHTML = `
- <div class="bigPokemonGenerals"> 
+    bigPokemonStats.innerHTML = openBigPokemonstatsHTML(i);
+}
+
+function openBigPokemonstatsHTML(i){
+return`
+<div class="bigPokemonGenerals"> 
     <table>
         <tr>
             <td>HP</td>
